@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, Alert } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
@@ -9,6 +9,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { USER_REGISTER_SUCCESS } from '../constants/userConstants'
 
 const CreateUser = () => {
+
 	const [name, setName] = useState('')
 	const [id, setId] = useState('')
 	const [email, setEmail] = useState('')
@@ -18,15 +19,21 @@ const CreateUser = () => {
 
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
+
+
+	//checking if the user created
 	const userRegister = useSelector((state) => state.userRegister)
 	const { loading, error, success } = userRegister
 
+	// when register success go back to users list
 	useEffect(() => {
 		if (success) {
+			alert('user created !')
 			navigate('/userslist')
 		}
-	}, [success, navigate])
+	}, [success, navigate]) 
 
+	// check password matches
 	const submitHandler = (e) => {
 		e.preventDefault()
 		if (password !== confirmPassword) {
@@ -53,6 +60,7 @@ const CreateUser = () => {
 							type='id'
 							placeholder='Enter id'
 							value={id ?? ''}
+							required
 							onChange={(e) => setId(e.target.value)}
 						></Form.Control>
 					</Form.Group>
@@ -63,6 +71,7 @@ const CreateUser = () => {
 							type='name'
 							placeholder='Enter name'
 							value={name ?? ''}
+							required
 							onChange={(e) => setName(e.target.value)}
 						></Form.Control>
 					</Form.Group>
@@ -73,6 +82,7 @@ const CreateUser = () => {
 							type='email'
 							placeholder='Enter email'
 							value={email ?? ''}
+							required
 							onChange={(e) => setEmail(e.target.value)}
 						></Form.Control>
 					</Form.Group>
@@ -83,6 +93,8 @@ const CreateUser = () => {
 							type='password'
 							placeholder='Enter password'
 							value={password ?? ''}
+							required
+							minLength={8}
 							onChange={(e) => setPassword(e.target.value)}
 						></Form.Control>
 					</Form.Group>
@@ -93,6 +105,7 @@ const CreateUser = () => {
 							type='password'
 							placeholder='Confirm password'
 							value={confirmPassword ?? ''}
+							required
 							onChange={(e) => setConfirmPassword(e.target.value)}
 						></Form.Control>
 					</Form.Group>

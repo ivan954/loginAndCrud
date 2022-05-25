@@ -15,15 +15,17 @@ const LoginScreen = () => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 
+	// when the match found update userInfo and go to users list
 	useEffect(() => {
 		if (userInfo) {
 			navigate('/userslist')
 		}
-	}, [userInfo])
+	}, [userInfo, navigate])
 
+
+	// passing to dispatch login email and password to find a match
 	const submitHandler = (e) => {
 		e.preventDefault()
-
 		dispatch(login(email, password))
 	}
 

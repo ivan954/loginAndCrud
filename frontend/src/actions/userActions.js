@@ -23,6 +23,8 @@ import {
 } from '../constants/userConstants'
 import axios from 'axios'
 
+// login
+// public users
 export const login = (email, password) => async (dispatch) => {
 	try {
 		dispatch({
@@ -48,6 +50,8 @@ export const login = (email, password) => async (dispatch) => {
 	}
 }
 
+//delete user
+//privet admin
 export const deleteUser = (id) => async (dispatch, getState) => {
 	try {
 		dispatch({
@@ -70,6 +74,8 @@ export const deleteUser = (id) => async (dispatch, getState) => {
 	}
 }
 
+// logout
+// public users
 export const logout = () => (dispatch) => {
 	localStorage.removeItem('userInfo')
 	dispatch({ type: USER_LOGOUT })
@@ -77,6 +83,8 @@ export const logout = () => (dispatch) => {
 	dispatch({ type: USER_LIST_RESET })
 }
 
+// users list
+//public users
 export const listUsers = () => async (dispatch, getState) => {
 	try {
 		dispatch({
@@ -99,6 +107,9 @@ export const listUsers = () => async (dispatch, getState) => {
 		})
 	}
 }
+
+// users detalis
+//public users
 export const getUserDetails = (id) => async (dispatch, getState) => {
 	try {
 		dispatch({
@@ -122,6 +133,8 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
 	}
 }
 
+//update user
+//privet admin
 export const updateUser = (user) => async (dispatch, getState) => {
 	try {
 		dispatch({
@@ -148,6 +161,8 @@ export const updateUser = (user) => async (dispatch, getState) => {
 	}
 }
 
+//create user
+//privet admin
 export const register = (id, name, email, password) => async (dispatch) => {
 	try {
 		dispatch({
@@ -165,7 +180,6 @@ export const register = (id, name, email, password) => async (dispatch) => {
 			type: USER_REGISTER_SUCCESS,
 			success: true,
 		})
-
 	} catch (error) {
 		dispatch({
 			type: USER_REGISTER_FAIL,

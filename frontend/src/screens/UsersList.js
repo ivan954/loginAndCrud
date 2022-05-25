@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button, Table, Row, Col } from 'react-bootstrap'
@@ -33,6 +34,7 @@ const UsersList = () => {
 	const editHandler = (id) => {
 		navigate(`/edituser/${id}`)
 	}
+
 	return (
 		<>
 			<Row>

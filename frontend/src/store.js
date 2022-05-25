@@ -10,6 +10,8 @@ import {
 	userRegisterReducer
 } from './reducers/userReducers'
 
+
+// redux reducers
 const reducer = combineReducers({
 	userList: userListReducer,
 	userLogin: userLoginReducer,
@@ -19,6 +21,8 @@ const reducer = combineReducers({
 	userRegister: userRegisterReducer,
 })
 
+
+// savings to local storage  
 const userInfoFromStorage = localStorage.getItem('userInfo')
 	? JSON.parse(localStorage.getItem('userInfo'))
 	: null
@@ -27,6 +31,8 @@ const initialState = {
 	userLogin: { userInfo: userInfoFromStorage },
 }
 
+
+// redux DevTools
 const middleware = [thunk]
 
 const store = createStore(

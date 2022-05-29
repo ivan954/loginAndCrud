@@ -52,7 +52,8 @@ const getUserById = AsyncHandler(async (req, res) => {
 //@route DELETE /api/users/:id
 //@access private/Admin
 const deleteUser = AsyncHandler(async (req, res) => {
-	const user = users.find((user) => user._id === req.params.id)
+	const user = users.findIndex((user) => user._id === req.params.id)
+	
 	if (user) {
 		users.splice(user, 1)
 		res.json({ message: 'User removed' })

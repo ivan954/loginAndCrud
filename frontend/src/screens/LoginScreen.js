@@ -22,7 +22,6 @@ const LoginScreen = () => {
 		}
 	}, [userInfo, navigate])
 
-
 	// passing to dispatch login email and password to find a match
 	const submitHandler = (e) => {
 		e.preventDefault()

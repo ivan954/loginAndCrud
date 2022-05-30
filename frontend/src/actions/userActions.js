@@ -178,7 +178,6 @@ export const register = (id, name, email, password) => async (dispatch) => {
 
 		dispatch({
 			type: USER_REGISTER_SUCCESS,
-			success: true,
 		})
 	} catch (error) {
 		dispatch({

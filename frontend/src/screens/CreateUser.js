@@ -6,10 +6,8 @@ import Loader from '../components/Loader'
 import { register } from '../actions/userActions'
 import FormContainer from '../components/FormContainer'
 import { useNavigate, Link } from 'react-router-dom'
-import { USER_REGISTER_SUCCESS } from '../constants/userConstants'
 
 const CreateUser = () => {
-
 	const [name, setName] = useState('')
 	const [id, setId] = useState('')
 	const [email, setEmail] = useState('')
@@ -20,18 +18,9 @@ const CreateUser = () => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 
-
 	//checking if the user created
 	const userRegister = useSelector((state) => state.userRegister)
-	const { loading, error, success } = userRegister
-
-	// when register success go back to users list
-	useEffect(() => {
-		if (success) {
-			alert('user created !')
-			navigate('/userslist')
-		}
-	}, [success, navigate]) 
+	const { loading, error } = userRegister
 
 	// check password matches
 	const submitHandler = (e) => {
@@ -40,6 +29,8 @@ const CreateUser = () => {
 			setMessage('Passwords do not match')
 		} else {
 			dispatch(register(id, name, email, password))
+			alert('User Created !')
+			navigate('/userslist')
 		}
 	}
 
@@ -94,7 +85,7 @@ const CreateUser = () => {
 							placeholder='Enter password'
 							value={password ?? ''}
 							required
-							minLength={8}
+							minLength={6}
 							onChange={(e) => setPassword(e.target.value)}
 						></Form.Control>
 					</Form.Group>

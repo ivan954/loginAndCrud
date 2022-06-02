@@ -12,9 +12,8 @@ const authUser = AsyncHandler(async (req, res) => {
 	const matchPassword = async (entheredPassword, password) => {
 		return await bcrypt.compare(entheredPassword, password)
 	}
-	console.log(matchPassword(password, user.password))
 
-	if (user && matchPassword(password, user.password)) {
+	if (user && (await matchPassword(password, user.password))) {
 		res.json({
 			_id: user._id,
 			name: user.name,
@@ -53,7 +52,7 @@ const getUserById = AsyncHandler(async (req, res) => {
 //@access private/Admin
 const deleteUser = AsyncHandler(async (req, res) => {
 	const user = users.findIndex((user) => user._id === req.params.id)
-	
+
 	if (user) {
 		users.splice(user, 1)
 		res.json({ message: 'User removed' })

@@ -23,6 +23,8 @@ import {
 } from '../constants/userConstants'
 import axios from 'axios'
 
+const PORT = process.env.REACT_APP_PORT
+
 // login
 // public users
 export const login = (email, password) => async (dispatch) => {
@@ -31,7 +33,10 @@ export const login = (email, password) => async (dispatch) => {
 			type: USER_LOGIN_REQUEST,
 		})
 
-		const { data } = await axios.post('/api/users/login', { email, password })
+		const { data } = await axios.post(
+			`http://localhost:${PORT}/api/users/login`,
+			{ email, password }
+		)
 
 		dispatch({
 			type: USER_LOGIN_SUCCESS,
@@ -58,7 +63,7 @@ export const deleteUser = (id) => async (dispatch, getState) => {
 			type: USER_DELETE_REQUEST,
 		})
 
-		await axios.delete(`/api/users/${id}`)
+		await axios.delete(`http://localhost:${PORT}/api/users/${id}`)
 
 		dispatch({
 			type: USER_DELETE_SUCCESS,
@@ -91,7 +96,7 @@ export const listUsers = () => async (dispatch, getState) => {
 			type: USER_LIST_REQUEST,
 		})
 
-		const { data } = await axios.get(`/api/users`)
+		const { data } = await axios.get(`http://localhost:${PORT}/api/users`)
 
 		dispatch({
 			type: USER_LIST_SUCCESS,
@@ -116,7 +121,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
 			type: USER_DETAILS_REQUEST,
 		})
 
-		const { data } = await axios.get(`/api/users/${id}`)
+		const { data } = await axios.get(`http://localhost:${PORT}/api/users/${id}`)
 
 		dispatch({
 			type: USER_DETAILS_SUCCESS,
@@ -141,7 +146,10 @@ export const updateUser = (user) => async (dispatch, getState) => {
 			type: USER_UPDATE_REQUEST,
 		})
 
-		const { date } = await axios.put(`/api/users/${user._id}`, user)
+		const { date } = await axios.put(
+			`http://localhost:${PORT}/api/users/${user._id}`,
+			user
+		)
 
 		dispatch({
 			type: USER_UPDATE_SUCCESS,
@@ -169,12 +177,15 @@ export const register = (id, name, email, password) => async (dispatch) => {
 			type: USER_REGISTER_REQUEST,
 		})
 
-		const { data } = await axios.post('/api/users/createuser', {
-			_id: id,
-			name,
-			email,
-			password,
-		})
+		const { data } = await axios.post(
+			`http://localhost:${PORT}/api/users/createuser`,
+			{
+				_id: id,
+				name,
+				email,
+				password,
+			}
+		)
 
 		dispatch({
 			type: USER_REGISTER_SUCCESS,

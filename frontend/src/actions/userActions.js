@@ -23,7 +23,7 @@ import {
 } from '../constants/userConstants'
 import axios from 'axios'
 
-const PORT = process.env.REACT_APP_PORT
+const PORT = process.env.PORT || 5000
 
 // login
 // public users
